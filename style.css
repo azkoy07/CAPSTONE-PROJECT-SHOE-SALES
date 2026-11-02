@@ -1,0 +1,306 @@
+/* ========================================================
+  style.css — Shoe Sales
+  Styling tambahan di luar Tailwind CSS utility classes.
+   ======================================================== */
+
+/* ---------- CSS Custom Properties ---------- */
+:root {
+  --color-primary: #2563eb;
+  --color-orange: #f97316;
+  --radius-card: 1rem;
+  --transition-fast: 150ms ease;
+}
+
+/* ---------- Focus Ring (aksesibilitas) ---------- */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ---------- Reduced Motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- Form Input Reusable ---------- */
+.form-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  background: #fff;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+}
+.form-input.is-invalid {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239,68,68,0.12);
+}
+
+/* ---------- Product Card ---------- */
+.product-card {
+  background: #fff;
+  border-radius: var(--radius-card);
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  overflow: hidden;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+  cursor: pointer;
+}
+.product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+.product-card:focus-within {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ---------- Product Placeholder Image ---------- */
+.product-img-wrap {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  line-height: 1;
+  user-select: none;
+}
+/* Modal image (lebih besar) */
+.product-img-wrap-modal {
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+  line-height: 1;
+  user-select: none;
+  border-radius: 0.75rem;
+}
+
+/* ---------- Cart Drawer ---------- */
+#cart-drawer {
+  will-change: transform;
+}
+#cart-drawer.open {
+  transform: translateX(0);
+}
+
+/* ---------- Stock Badge ---------- */
+.badge-available  { background: #dcfce7; color: #15803d; }
+.badge-low        { background: #fff7ed; color: #c2410c; }
+.badge-out        { background: #f3f4f6; color: #6b7280; }
+
+/* ---------- Category Filter Button ---------- */
+.cat-btn {
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  border: 1px solid #d1d5db;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  background: #fff;
+  color: #374151;
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+.cat-btn:hover {
+  background: #eff6ff;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+.cat-btn.active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+
+/* ---------- Toast ---------- */
+.toast {
+  pointer-events: auto;
+  min-width: 220px;
+  max-width: 320px;
+  padding: 0.75rem 1rem;
+  border-radius: 0.625rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  animation: toastIn 0.25s ease;
+}
+.toast.success { background: #16a34a; }
+.toast.error   { background: #dc2626; }
+.toast.info    { background: #2563eb; }
+.toast.warning { background: #d97706; }
+.toast.fade-out { animation: toastOut 0.3s ease forwards; }
+
+@keyframes toastIn  { from { opacity: 0; transform: translateX(2rem); } to { opacity: 1; transform: none; } }
+@keyframes toastOut { to   { opacity: 0; transform: translateX(2rem); } }
+
+/* ---------- Admin Summary Cards ---------- */
+.summary-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+/* ---------- Size Selector ---------- */
+.size-btn {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.375rem;
+  border: 1px solid #d1d5db;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  background: #fff;
+}
+.size-btn:hover { border-color: var(--color-primary); color: var(--color-primary); }
+.size-btn.selected { background: var(--color-primary); border-color: var(--color-primary); color: #fff; }
+
+/* ---------- Hero Gradient fallback ---------- */
+.hero-section {
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+}
+
+/* ---------- Qty Stepper ---------- */
+.qty-btn {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.375rem;
+  border: 1px solid #d1d5db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: #fff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #374151;
+  transition: background var(--transition-fast);
+}
+.qty-btn:hover:not(:disabled) { background: #f3f4f6; }
+.qty-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ---------- Admin Tab ---------- */
+.admin-tab {
+  background: transparent;
+  color: #6b7280;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+}
+.admin-tab:hover { color: #374151; background: #f9fafb; }
+.admin-tab.active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+  background: #fff;
+}
+
+/* ---------- Card produk line-clamp (fallback) ---------- */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ---------- Sales metric card ---------- */
+.sales-metric-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 1.25rem 1rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+/* ---------- Role Switcher (Pembeli / Penjual) ---------- */
+.role-switcher {
+  display: flex;
+  background: #f1f5f9;
+  border-radius: 9999px;
+  padding: 3px;
+  gap: 2px;
+}
+.role-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 14px;
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #64748b;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 150ms ease;
+  white-space: nowrap;
+}
+.role-btn:hover { color: #1e293b; background: rgba(255,255,255,0.6); }
+.role-btn.active {
+  background: #fff;
+  color: var(--color-primary);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+.role-btn.active[id="role-seller-btn"] {
+  color: #7c3aed;
+}
+
+/* ---------- Sub-nav (tabs bawah header pembeli) ---------- */
+.subnav-btn {
+  padding: 7px 14px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #64748b;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all 150ms ease;
+  margin-bottom: -1px;
+}
+.subnav-btn:hover { color: var(--color-primary); }
+.subnav-btn.active {
+  color: var(--color-primary);
+  font-weight: 700;
+  border-bottom-color: var(--color-primary);
+}
+
+/* ---------- Image Upload Zone ---------- */
+.img-upload-zone {
+  position: relative;
+  width: 100%;
+  height: 140px;
+  border: 2px dashed #d1d5db;
+  border-radius: 0.75rem;
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 150ms ease, background 150ms ease;
+  overflow: hidden;
+}
+.img-upload-zone:hover,
+.img-upload-zone.drag-over {
+  border-color: var(--color-primary);
+  background: #eff6ff;
+}
+.img-upload-zone.has-image {
+  border-style: solid;
+  border-color: var(--color-primary);
+}
